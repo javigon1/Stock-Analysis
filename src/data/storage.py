@@ -2,7 +2,7 @@ import boto3
 import logging
 from botocore.exceptions import ClientError
 from datetime import datetime
-
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ class S3Handler:
     # Args: data (Pandas DataFrame) is the stock data to save
     #       symbol is the stock 
     # Return type: bool (true if successful, false otherwise)
-    def save_stock_data(self, data, symbol):
+    def save_stock_data(self, data: pd.DataFrame, symbol) -> bool:
         try:
             date = datetime.now()
             path = f"raw/stock_data/{symbol}/{date.year}/{date.month:02d}/data.csv"

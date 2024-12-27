@@ -17,7 +17,7 @@ class StockDataCollector:
         self.default_end = datetime.now()
 
     # Main method to fetch data for a single stock
-    def fetch_stock_data(self, symbol, start_date=None, end_date=None):
+    def fetch_stock_data(self, symbol, start_date=None, end_date=None) -> pd.DataFrame:
         # Dates are expected in the YYYY-MM-DD format
         try:
             logger.info(f"Trying to fetch stock data for {symbol}")
@@ -41,7 +41,7 @@ class StockDataCollector:
             raise
 
     # Check data quality and completeness
-    def validate_data(self, data):
+    def validate_data(self, data) -> bool:
         if data is None or data.empty:
             logger.error("No data")
             return False
