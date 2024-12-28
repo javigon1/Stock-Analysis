@@ -1,0 +1,50 @@
+Calculations required for an in depth analysis on stock
+1. Moving averages:
+    - Trend that smooths out daily price fluctuations
+        * This can allow us to calculate different averages (20 and 50 days) and
+        by doing so we can figure uptrends and downtrends according to how the
+        two averages intersect, to signal buy and sell alerts
+
+2. Exponential moving averages (EMA):
+    - Similar to moving averages but gives more weight to the recent prices
+        * We pay more attentioin to how the stock is currently doing rather than
+        how is went in the past
+
+        * Formula -> EMA_t = a · Price_t + (1 - a) · EMA_(t-1)
+        Where:
+            -> EMA_t = EMA at the current time step
+            -> a = 2 / (N + 1) -> smoothing factor where N is the span (# of periods)
+            -> Price_t = Price at the current time step
+            -> EMA_(t-1) = EMA at the previous time step
+
+3. Daily Returns:
+    - Calculate the change the price (in %) from previous days
+        * Very general and simple metric to measure stock performance
+
+        * Calculate percentage change on closing price between curr and prev row 
+
+4. Volatility:
+    - Check how stable the price of a stock is
+        * We calculate this by getting the standard deviation of the daily returns
+        over the last 20 days
+        
+        * Get the standard deviation of a rolling average
+
+5. Volume indicators:
+    - Simply keep track of the trading activity
+
+6. Relative Strength Index (RSI):
+    - Check if a stock is overbought or oversold 
+        * compare the magnitude of the recent gains over the recent losses
+        Think about it as a speedometer for the price momemtum
+
+        * The calculation -> calculate the rolling average of gains and losses over
+        a given period of time (e.g. 14 days).
+        * Calculate the ratio of gains over losses
+        * RSI = 100 - (100 / (1 + ratio))
+
+7. Bollinger Bands
+    - Measure the volatility and identify the potential overbought/oversold conditions
+        * Middle Band = Moving average of closing price
+        * Upper Band = Middle band + (2 * standard deviation)
+        * Lower Band = Middle band - (2 * standard deviation)
